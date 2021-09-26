@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientCOntroller;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,19 @@ use App\Http\Controllers\ClientCOntroller;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/* *************************Admin Interface Routes End********************** */
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+
+// require __DIR__.'/auth.php';
+
+Route::get ('/admin', [AdminController::class, 'admin']);
+
+/* *************************Admin Interface Routes End********************** */
+
+
 
 /* *************************Client Interface Routes Start********************** */
 
@@ -30,8 +44,6 @@ Route::get ('/signup', [ClientController::class, 'signup']);
 
 /* *************************Client Interface Routes End********************** */
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
-// require __DIR__.'/auth.php';
+
+
