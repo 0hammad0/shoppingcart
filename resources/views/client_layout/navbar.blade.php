@@ -34,6 +34,8 @@
           
           <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
+          <li class="nav-item cta cta-colored"><a href="/login" class="nav-link">Login</a></li>
+
         </ul>
       </div>
     </div>

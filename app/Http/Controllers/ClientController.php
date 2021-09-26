@@ -25,4 +25,14 @@ class ClientController extends Controller
     public function checkout () {
         return view ('client.checkout');
     }
+
+    //Login page
+    public function login () {
+        return view ('client.login');
+    }
+
+    //Signup page
+    public function signup () {
+        return view ('client.signup');
+    }
 }

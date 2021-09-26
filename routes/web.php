@@ -14,6 +14,8 @@ use App\Http\Controllers\ClientCOntroller;
 |
 */
 
+/* *************************Client Interface Routes Start********************** */
+
 Route::get ('/', [ClientController::class, 'home']);
 
 Route::get ('/shop', [ClientController::class, 'shop']);
@@ -21,6 +23,12 @@ Route::get ('/shop', [ClientController::class, 'shop']);
 Route::get ('/cart', [ClientController::class, 'cart']);
 
 Route::get ('/checkout', [ClientController::class, 'checkout']);
+
+Route::get ('/login', [ClientController::class, 'login']);
+
+Route::get ('/signup', [ClientController::class, 'signup']);
+
+/* *************************Client Interface Routes End********************** */
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
