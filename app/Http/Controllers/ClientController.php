@@ -35,4 +35,9 @@ class ClientController extends Controller
     public function signup () {
         return view ('client.signup');
     }
+
+    // Order Page from admin dashboard
+    public function orders () {
+        return view ('admin.orders');
+    }
 }
