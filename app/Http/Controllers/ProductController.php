@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Products;
+use Session;
 
 class ProductController extends Controller
 {
@@ -115,5 +116,23 @@ class ProductController extends Controller
         $product -> delete();
 
         return redirect ('/products') -> with ('status', 'Product has been Deleted.');
+    }
+
+    // Product Activate Function
+    public function activate_deactivate_product ($id) {
+        $product = Products :: find($id);
+
+        if ($product -> status == 0) {
+            $product -> status = 1;
+            Session::put('status', 'Product '.$product -> product_name.' has been Activated');
+        } else {
+            $product -> status = 0;
+            Session::put('status2', 'Product '.$product -> product_name.' has been deactivated');
+        }
+
+        $product -> update();
+
+
+        return redirect('/products');
     }
 }

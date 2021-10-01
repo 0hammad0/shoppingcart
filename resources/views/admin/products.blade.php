@@ -35,7 +35,15 @@
 
                 @if (Session::has('status'))
                       <div class="alert alert-success">
-                        <li>{{Session::get('status')}}</li>
+                        <li>{{Session::get('status')}}
+                          {{Session::put('status', null)}}</li>
+                      </div>
+                    @endif
+
+                    @if (Session::has('status2'))
+                      <div class="alert alert-warning">
+                        <li>{{Session::get('status2')}}
+                          {{Session::put('status2', null)}}</li>
                       </div>
                     @endif
 
@@ -79,9 +87,13 @@
                     </td>
                     <td>{{$products -> product_name}}</td>
                     <td> {{$products -> product_category}}</td>
-                    <td>{{$products -> product_price}}</td>
+                    <td>{{$products -> product_price}} $</td>
                     <td>
-                      <a href="#" class="btn btn-success">Unactivate</a>
+                      @if ($products -> status == 1)
+                      <a href="{{URL::to ('/activationproduct', $products -> id)}}" class="btn btn-success">Unactivate</a>
+                      @else
+                      <a href="{{URL::to ('/activationproduct', $products -> id)}}" class="btn btn-warning">Activate</a>
+                      @endif
                       <a href="{{URL::to ('/editproduct', $products -> id)}}" class="btn btn-primary"><i class="nav-icon fas fa-edit"></i></a>
                       <a href="{{URL::to ('/deleteproduct', $products -> id)}}" id="delete" class="btn btn-danger" ><i class="nav-icon fas fa-trash"></i></a>
                     </td>

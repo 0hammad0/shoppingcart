@@ -60,6 +60,7 @@ Route::get ('/viewproduct', [ProductController::class, 'viewproduct']);
 Route::get ('/editproduct/{id}', [ProductController::class, 'editproduct']);
 Route::post ('/updateproduct', [ProductController::class, 'updateproduct']);
 Route::get ('/deleteproduct/{id}', [ProductController::class, 'deleteproduct']);
+Route::get ('/activationproduct/{id}', [ProductController::class, 'activate_deactivate_product']);
 
 /* *************************Product Function Routes End********************** */
 
