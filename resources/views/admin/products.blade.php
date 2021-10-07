@@ -90,9 +90,9 @@
                     <td>{{$products -> product_price}} $</td>
                     <td>
                       @if ($products -> status == 1)
-                      <a href="{{URL::to ('/activationproduct', $products -> id)}}" class="btn btn-success">Unactivate</a>
+                      <a href="{{URL::to ('/activationofproduct', $products -> id)}}" class="btn btn-success">Deactivate</a>
                       @else
-                      <a href="{{URL::to ('/activationproduct', $products -> id)}}" class="btn btn-warning">Activate</a>
+                      <a href="{{URL::to ('/activationofproduct', $products -> id)}}" class="btn btn-warning">Activate</a>
                       @endif
                       <a href="{{URL::to ('/editproduct', $products -> id)}}" class="btn btn-primary"><i class="nav-icon fas fa-edit"></i></a>
                       <a href="{{URL::to ('/deleteproduct', $products -> id)}}" id="delete" class="btn btn-danger" ><i class="nav-icon fas fa-trash"></i></a>

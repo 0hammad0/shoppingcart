@@ -17,7 +17,7 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/* *************************Admin Interface Routes End********************** */
+/* *************************Admin Interface Routes Start********************** */
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -49,7 +49,7 @@ Route::get ('/editcategory/{id}', [CategoryController::class, 'editcategory']);
 Route::post ('/updatecategory', [CategoryController::class, 'updatecategory']);
 Route::get ('/deletecategory/{id}', [CategoryController::class, 'deletecategory']);
 
-/* *************************Admin Function Routes End********************** */
+/* *************************Category Function Routes End********************** */
 
 
 
@@ -60,9 +60,22 @@ Route::get ('/viewproduct', [ProductController::class, 'viewproduct']);
 Route::get ('/editproduct/{id}', [ProductController::class, 'editproduct']);
 Route::post ('/updateproduct', [ProductController::class, 'updateproduct']);
 Route::get ('/deleteproduct/{id}', [ProductController::class, 'deleteproduct']);
-Route::get ('/activationproduct/{id}', [ProductController::class, 'activate_deactivate_product']);
+Route::get ('/activationofproduct/{id}', [ProductController::class, 'activate_deactivate_product']);
+Route::get ('/view_product_by_cateogory/{category_name}', [ProductController::class, 'view_product_by_cateogory']);
 
 /* *************************Product Function Routes End********************** */
+
+
+
+/* *************************Slider Function Routes Start********************** */
+
+Route::post ('/saveslider', [SliderController::class, 'saveslider']);
+Route::get ('/activationofslider/{id}', [SliderController::class, 'activate_deactivate_slider']);
+Route::get ('/deleteslider/{id}', [SliderController::class, 'deleteslider']);
+Route::get ('/editslider/{id}', [SliderController::class, 'editslider']);
+Route::post ('/updateslider', [SliderController::class, 'updateslider']);
+
+/* *************************Slider Function Routes End********************** */
 
 
 
@@ -78,7 +91,19 @@ Route::get ('/checkout', [ClientController::class, 'checkout']);
 
 Route::get ('/login', [ClientController::class, 'login']);
 
+Route::post ('/access_account', [ClientController::class, 'access_account']);
+
+Route::get ('/logout', [ClientController::class, 'logout']);
+
 Route::get ('/signup', [ClientController::class, 'signup']);
+
+Route::post ('/create_account', [ClientController::class, 'create_account']);
+
+Route::get ('/addtocart/{id}', [ClientController::class, 'addtocart']);
+
+Route::post ('/update_qty/{id}', [ClientController::class, 'update_qty']);
+
+Route::get ('/remove_from_cart/{id}', [ClientController::class, 'remove_from_cart']);
 
 /* *************************Client Interface Routes End********************** */
 

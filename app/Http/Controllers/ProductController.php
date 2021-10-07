@@ -55,6 +55,7 @@ class ProductController extends Controller
         $product -> product_price = $request -> product_price;
         $product -> product_category = $request -> product_category;
         $product -> product_image = $fileNameToStore;
+        $product -> status = 1;
 
         $product -> save();
 
@@ -134,5 +135,13 @@ class ProductController extends Controller
 
 
         return redirect('/products');
+    }
+
+    // view product by cateogory Function
+    public function view_product_by_cateogory ($category_name) {
+        $product = Products :: all () -> where ('product_category', $category_name) -> where ('status', 1);
+        $categories = Category :: all();
+
+        return view ('client.shop', compact ('product', 'categories'));
     }
 }

@@ -1,7 +1,7 @@
 @extends('admin_layout.admin')
 
 @section('title')
-    Add Slider
+    Update Slider
 @endsection
 
 @section('content')
@@ -12,12 +12,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Slider</h1>
+            <h1>Update Slider</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{URL::to ('/admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">Slider</li>
+              <li class="breadcrumb-item active">Update Slider</li>
             </ol>
           </div>
         </div>
@@ -33,7 +33,7 @@
             <!-- jquery validation -->
             <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Add slider</h3>
+                <h3 class="card-title">Update Slider</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -56,37 +56,30 @@
 
               {{-- <form > --}}
 
-                {!!Form::open(['action' => 'App\Http\Controllers\SliderController@saveslider', 'method' => 'post', 'enctype' => 'multipart/form-data'])!!}
+                {!!Form::open(['action' => 'App\Http\Controllers\SliderController@updateslider', 'method' => 'post', 'enctype' => 'multipart/form-data'])!!}
+
+                @csrf
+
+                {{Form::hidden('id', $slider -> id)}}
 
                 <div class="card-body">
                   <div class="form-group">
 
-                    {{-- <label for="exampleInputEmail1">Slider description 1</label>
-                    <input type="text" name="description1" class="form-control" id="exampleInputEmail1" placeholder="Enter slider description"> --}}
-
                     {{Form::label ('', 'Slider description 1', ['for' => 'exampleInputEmail1'])}}
-                    {{Form::text ('description1', '', ['class' => 'form-control', 'id' => 'exampleInputEmail1', 'placeholder' => 'Enter slider description'])}}
+                    {{Form::text ('description1', $slider -> description1, ['class' => 'form-control', 'id' => 'exampleInputEmail1', 'placeholder' => 'Enter slider description'])}}
 
                   </div>
                   <div class="form-group">
 
-                    {{-- <label for="exampleInputEmail1">Slider description 2</label>
-                    <input type="text" name="description2" class="form-control" id="exampleInputEmail1" placeholder="Enter slider description"> --}}
-
                     {{Form::label ('', 'Slider description 2', ['for' => 'exampleInputEmail1'])}}
-                    {{Form::text ('description2', '', ['class' => 'form-control', 'id' => 'exampleInputEmail1', 'placeholder' => 'Enter slider description'])}}
+                    {{Form::text ('description2', $slider -> description2, ['class' => 'form-control', 'id' => 'exampleInputEmail1', 'placeholder' => 'Enter slider description'])}}
 
                   </div>
-
-                  {{-- <label for="exampleInputFile">Slider image</label> --}}
 
                   {{Form::label ('', 'Slider image', ['for' => 'exampleInputFile'])}}
 
                   <div class="input-group">
                     <div class="custom-file">
-
-                      {{-- <input type="file" class="custom-file-input" id="exampleInputFile">
-                      <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
 
                     {{Form::file ('slider_image', ['class' => 'custom-file-input', 'id' => 'exampleInputFile', 'placeholder' => 'Enter slider description'])}}
                     {{Form::label ('', 'Choose file', ['for' => 'exampleInputEmail1', 'class' => 'custom-file-label'])}}
@@ -104,7 +97,7 @@
                   <!-- <button type="submit" class="btn btn-warning">Submit</button> -->
                   {{-- <input type="submit" class="btn btn-warning" value="Save" > --}}
                   
-                  {{Form::submit ('Save', ['class' => 'btn btn-warning'])}}
+                  {{Form::submit ('Update', ['class' => 'btn btn-warning'])}}
 
                 </div>
 

@@ -29,20 +29,21 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"> <a href="/" class="nav-link"> Home </a> </li>
-          <li class="nav-item cta cta-colored"> <a href="/" class="nav-link" hidden> Home </a> </li>
+          <li class="nav-item active"> <a href="/" class="nav-link" > Home </a> </li>
 
 
           <li class="nav-item active"> <a href="/shop" class="nav-link"> shop </a> </li>
-          <li class="nav-item cta cta-colored"> <a href="/shop" class="nav-link" hidden> shop </a> </li>
           
 
-          <li class="nav-item cta cta-colored"> <a href="/cart" class="nav-link"> <span class="icon-shopping_cart"></span>[0] </a> </li>
-          <li class="nav-item cta cta-colored"> <a href="/cart" class="nav-link" hidden> <span class="icon-shopping_cart"></span>[0] </a> </li>
+          <li class="nav-item cta cta-colored"> <a href="/cart" class="nav-link"> <span class="icon-shopping_cart"></span>
+            [{{Session::has('cart') ? Session::get('cart') -> totalQty : 0 }}]
+          </a> </li>
 
-
+          @if (Session::has('client'))
+          <li class="nav-item active"> <a href="/logout" class="nav-link"> Logout </a> </li>
+          @else
           <li class="nav-item active"> <a href="/login" class="nav-link"> Login </a> </li>
-          <li class="nav-item active"> <a href="/login" class="nav-link" hidden> Login </a> </li>
+          @endif
 
         </ul>
       </div>
