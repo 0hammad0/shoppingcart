@@ -7,8 +7,11 @@ use App\Models\products;
 use App\Models\slider;
 use App\Models\Category;
 use App\Models\Client;
+use App\Models\Order;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Cart;
+use App\Mail\SendMail;
 use Session;
 
 class ClientController extends Controller
@@ -47,6 +50,9 @@ class ClientController extends Controller
     public function checkout () {
         if(!Session::has('client')){
             return view ('client.login');
+        }
+        if(!Session::has('cart')){
+            return view ('client.cart')->with('status', 'you have no items in the cart');
         }
         return view ('client.checkout');
     }
@@ -107,7 +113,15 @@ class ClientController extends Controller
 
     // Order Page from admin dashboard
     public function orders () {
-        return view ('admin.orders');
+        $orders = Order::All();
+
+        $orders->transform(function($order, $key){
+            $order->cart = unserialize($order->cart);
+
+            return $order;
+        });
+
+        return view ('admin.orders', compact ('orders'));
     }
 
     // Add To Cart Function
@@ -153,5 +167,38 @@ class ClientController extends Controller
 
         //dd(Session::get('cart'));
         return back();
+    }
+
+    // Post Checkout Function
+    public function postCheckout (Request $request) {
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+
+        $payer_id = time();
+
+        $order = new Order();
+        $order -> name = $request -> name;
+        $order -> address = $request -> address;
+        $order -> cart = serialize($cart);
+        $order -> payer_id = $payer_id;
+
+        $order -> save();
+
+        Session::forget('cart');
+
+        $orders = Order::where('payer_id', $payer_id)->get();
+
+        $orders -> transform(function($order, $key){
+            $order -> cart = unserialize($order->cart);
+
+            return $order;
+        });
+
+        $email = Session::get('client')->email;
+        Mail::to($email)->send(new SendMail($order));
+
+        // $orders = $order;
+        // return view('mail.invoice', compact('orders'));
+        return redirect('/cart')->with('status', 'Your purchase has been made');
     }
 }

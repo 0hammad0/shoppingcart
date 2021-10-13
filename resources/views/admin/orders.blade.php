@@ -37,37 +37,41 @@
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
+                  <tr align="center">
                     <th>Date</th>
+                    <th>Address</th>
                     <th>Client Names</th>
                     <th>Orders</th>
-                    <th>Actions</th>
+                    <th>View Pdf</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>2020</td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
+                    @foreach ($orders as $order)
+                        
+                  <tr align="center">
+                    <td>{{$order -> created_at}}</td>
+                    <td>{{$order -> address}}</td>
+                    <td>{{$order -> name}}</td>
                     <td>
-                      <a href="#" class="btn btn-primary"><i class="nav-icon fas fa-eye"></i></a>
+                      @foreach ($order -> cart -> items as $item)
+                          {{$item['product_name']." , "}}
+                      @endforeach
                     </td>
-                  </tr>
-                  <tr>
-                    <td>2020</td>
-                    <td>Win 95+</td>
-                    <td>5</td>
                     <td>
-                      <a href="#" class="btn btn-primary"><i class="nav-icon fas fa-eye"></i></a>
+                      <a href="{{URL::to ('/view_pdf/'. $order -> id)}}" class="btn btn-primary"><i class="nav-icon fas fa-eye"></i></a>
                     </td>
                   </tr>
                   </tbody>
+                  
+                  @endforeach
+
                   <tfoot>
-                  <tr>
+                  <tr align="center">
                     <th>Date</th>
+                    <th>Address</th>
                     <th>Client Names</th>
                     <th>Orders</th>
-                    <th>Actions</th>
+                    <th>View Pdf</th>
                   </tr>
                   </tfoot>
                 </table>

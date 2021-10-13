@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 /* *************************Admin Interface Routes Start********************** */
 
 // Route::get('/dashboard', function () {
@@ -79,6 +81,12 @@ Route::post ('/updateslider', [SliderController::class, 'updateslider']);
 
 
 
+/* *************************Pdf Function Routes Start********************** */
+Route::get('/view_pdf/{id}', [PdfController::class, 'view_pdf']);
+/* *************************Pdf Function Routes End********************** */
+
+
+
 /* *************************Client Interface Routes Start********************** */
 
 Route::get ('/', [ClientController::class, 'home']);
@@ -104,6 +112,8 @@ Route::get ('/addtocart/{id}', [ClientController::class, 'addtocart']);
 Route::post ('/update_qty/{id}', [ClientController::class, 'update_qty']);
 
 Route::get ('/remove_from_cart/{id}', [ClientController::class, 'remove_from_cart']);
+
+Route::post ('/postCheckout', [ClientController::class, 'postCheckout']);
 
 /* *************************Client Interface Routes End********************** */
 
